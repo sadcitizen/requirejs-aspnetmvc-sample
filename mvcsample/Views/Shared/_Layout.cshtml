@@ -1,4 +1,6 @@
-﻿<!doctype html>
+﻿@using mvcsample.Helpers
+
+<!doctype html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
@@ -42,11 +44,13 @@
             </div>
         </footer> 
         
-        <script type="text/javascript" src="@Url.Content("~/scripts/public/packages.js")"></script>
+        @*Html.RequireJs()*@
         <script type="text/javascript" src="@Url.Content("~/scripts/assets/require/require.min.js")"></script>
         <script type="text/javascript">
-            require(['app'], function (app) {
-                app.start("@(ViewContext.RouteData.Values["controller"])/@(ViewContext.RouteData.Values["action"])", @Html.Raw(ViewBag.PageParams ?? "null"));
+            require(['/scripts/public/packages.js'], function() {
+                require(['app'], function (app) {
+                    app.start("@(ViewContext.RouteData.Values["controller"])/@(ViewContext.RouteData.Values["action"])", @Html.Raw(ViewBag.PageParams ?? "null"));
+               }); 
             });
         </script>
     </body>

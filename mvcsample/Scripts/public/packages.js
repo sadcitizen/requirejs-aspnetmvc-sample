@@ -1,4 +1,4 @@
-var require = {
+require.config({
 	baseUrl: '/scripts',
 
 	urlArgs: 'v=' + (new Date()).getTime(),
@@ -37,4 +37,4 @@ var require = {
 			exports: '_'
 		},
 	}
-};
+});
