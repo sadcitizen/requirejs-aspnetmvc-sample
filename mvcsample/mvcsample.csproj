@@ -255,14 +255,17 @@
     <Content Include="Scripts\assets\require\require.min.js" />
     <Content Include="Scripts\assets\underscore\underscore.min.js" />
     <Content Include="Scripts\build\app.min.js" />
+    <Content Include="Scripts\Gruntfile.js" />
     <Content Include="Scripts\public\app.js" />
     <Content Include="Scripts\public\core\config.js" />
     <Content Include="Scripts\public\core\urls.js" />
     <Content Include="Scripts\public\packages.js" />
-    <Content Include="Scripts\public\subapps\home\home_contact.js" />
-    <Content Include="Scripts\public\subapps\home\home_about.js" />
-    <Content Include="Scripts\public\subapps\home\home_index.js" />
-    <Content Include="Scripts\public\subapps\page\page_index.js" />
+    <Content Include="Scripts\public\subapps\home\actions\about.js" />
+    <Content Include="Scripts\public\subapps\home\actions\contact.js" />
+    <Content Include="Scripts\public\subapps\home\actions\index.js" />
+    <Content Include="Scripts\public\subapps\home\controller.js" />
+    <Content Include="Scripts\public\subapps\page\actions\index.js" />
+    <Content Include="Scripts\public\subapps\page\controller.js" />
     <Content Include="Scripts\public\core\tools.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -317,6 +320,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Partials\ScriptsRelease.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\package.json" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
