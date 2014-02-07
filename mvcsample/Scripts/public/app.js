@@ -4,34 +4,24 @@ define(function(require){
     var tools = require('tools'),
         app = function() {
 
-            var routes = {
-                
-                'home/index': function (params) {
-                    require('home_index').start(params);
+            var controllers = {
+                home: function (action, params) {
+                    require('home_controller').initialize(action, params);
                 },
-                
-                'home/about': function (params) {
-                    require('home_about').start(params);
-                },
-                
-                'home/contact': function (params) {
-                    require('home_contact').start(params);
-                },
-                
-                'page/index': function (params) {
-                    require('page_index').start(params);
-                }
 
+                page: function (action, params) {
+                    require('page_controller').initialize(action, params);
+                }
             };
 
             function start(route, params) {
 
                 tools.log('Application starts!');
 
-                route = route.toLowerCase();
-                
-                if (routes[route]) {
-                    routes[route](params);
+                var parts = route.toLowerCase().split('/');
+
+                if (controllers[parts[0]]) {
+                    controllers[parts[0]](parts[1], params);
                 }
             }
 
