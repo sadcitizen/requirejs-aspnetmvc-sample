@@ -305,6 +305,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\build\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -314,6 +315,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\build.bat" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Partials\ScriptsDebug.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Partials\ScriptsRelease.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

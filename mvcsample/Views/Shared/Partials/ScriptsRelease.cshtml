@@ -1,0 +1,6 @@
+﻿<script type="text/javascript" src="@Url.Content("~/scripts/build/app.min.js")"></script>
+<script type="text/javascript">
+    require(['app'], function (app) {
+        app.start("@(ViewContext.RouteData.Values["controller"])/@(ViewContext.RouteData.Values["action"])", @Html.Raw(ViewBag.PageParams ?? "null"));
+    }); 
+</script>

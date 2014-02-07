@@ -1,0 +1,7 @@
+bin
+obj
+*.suo
+*.user
+**/node_modules/
+**/.idea/*
+_ReSharper.mvcsample/*

@@ -1,4 +1,14 @@
-﻿@using mvcsample.Helpers
+﻿@functions
+{
+    void IncludeScripts()
+    {
+    #if DEBUG
+        Html.RenderPartial("Partials/ScriptsDebug");            
+    #else
+        Html.RenderPartial("Partials/ScriptsRelease");
+    #endif
+    }   
+}
 
 <!doctype html>
 <html lang="en">
@@ -43,15 +53,8 @@
                 </div>
             </div>
         </footer> 
-        
-        @*Html.RequireJs()*@
-        <script type="text/javascript" src="@Url.Content("~/scripts/assets/require/require.min.js")"></script>
-        <script type="text/javascript">
-            require(['/scripts/public/packages.js'], function() {
-                require(['app'], function (app) {
-                    app.start("@(ViewContext.RouteData.Values["controller"])/@(ViewContext.RouteData.Values["action"])", @Html.Raw(ViewBag.PageParams ?? "null"));
-               }); 
-            });
-        </script>
+        @{
+            IncludeScripts();
+        }
     </body>
 </html>
