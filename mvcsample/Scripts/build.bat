@@ -1,1 +1,0 @@
-node assets/require/r.js -o build.js
