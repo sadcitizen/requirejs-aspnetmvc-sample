@@ -1,48 +1,21 @@
 define(function (require) {
     'use strict';
 
-    var HomeController = function () {
+    var base = require('base');
 
-        var actions = {
-            index: index,
-            contact: contact,
-            about: about
-        };
+    return new base.controller({
+        actions: {
+            index: function (options) {
+                require('home_index').start(options);
+            },
 
-        /**
-         * Constructor
-         * */
+            about: function (options) {
+                require('home_about').start(options);
+            },
 
-        function initialize(action, options) {
-
-            if (actions[action]) {
-                actions[action](options);
+            contact: function (options) {
+                require('home_contact').start(options);
             }
-
         }
-
-        /**
-         * Actions
-         * */
-        function index(options) {
-            require('home_index').start(options);
-        }
-
-        function about(options) {
-            require('home_about').start(options);
-        }
-
-        function contact(options) {
-            require('home_contact').start(options);
-        }
-
-        /**
-         * API
-         * */
-        return {
-            initialize: initialize
-        }
-    };
-
-    return new HomeController();
+    });
 });

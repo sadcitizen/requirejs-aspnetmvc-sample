@@ -1,7 +1,7 @@
 require.config({
     baseUrl: '/scripts',
 
-    urlArgs: 'v=' + (new Date()).getTime(),
+    //urlArgs: 'v=' + (new Date()).getTime(),
 
     paths: {
         /**

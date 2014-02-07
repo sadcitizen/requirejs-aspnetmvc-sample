@@ -1,38 +1,13 @@
 define(function (require) {
     'use strict';
 
-    var PageController = function () {
+    var base = require('base');
 
-        var actions = {
-            index: index
-        };
-
-        /**
-         * Constructor
-         * */
-
-        function initialize(action, options) {
-
-            if (actions[action]) {
-                actions[action](options);
+    return new base.controller({
+        actions: {
+            index: function (options) {
+                require('page_index').start(options);
             }
-
         }
-
-        /**
-         * Actions
-         * */
-        function index(options) {
-            require('page_index').start(options);
-        }
-
-        /**
-         * API
-         * */
-        return {
-            initialize: initialize
-        }
-    };
-
-    return new PageController();
+    });
 });

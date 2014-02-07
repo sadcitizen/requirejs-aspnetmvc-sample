@@ -3,38 +3,64 @@ define(function () {
 
     var Base = function () {
 
-        function app (options) {
+        function app (_opts) {
 
-            if (options === undefined && options.controllers === undefined) {
+            if (_opts === undefined && _opts.controllers === undefined) {
                 throw new Error('Controllers not found!');
             }
 
+            /**
+             * Starter
+             * */
             function start(route, params) {
                 var parts = route.toLowerCase().split('/');
 
-                if (options.controllers[parts[0]]) {
+                if (_opts.controllers[parts[0]]) {
 
-                    if (options.beforeStart) {
-                        options.beforeStart();
+                    if (_opts.beforeStart) {
+                        _opts.beforeStart();
                     }
 
-                    require([options.controllers[parts[0]]], function(ctrl) {
+                    require([_opts.controllers[parts[0]]], function(ctrl) {
                         ctrl.initialize(parts[1], params);
                     });
 
-                    if (options.afterStart) {
-                        options.afterStart();
+                    if (_opts.afterStart) {
+                        _opts.afterStart();
                     }
                 }
             }
 
+            /**
+             * API
+             * */
             return {
                 start: start
             };
         }
 
-        function controller () {
+        function controller (_opts) {
 
+            if (_opts === undefined && _opts.actions === undefined) {
+                throw new Error('Actions not found!');
+            }
+
+            /**
+             * Constructor
+             * */
+            function initialize(action, options) {
+
+                if (_opts.actions[action]) {
+                    _opts.actions[action](options);
+                }
+            }
+
+            /**
+             * API
+             * */
+            return {
+                initialize: initialize
+            }
         }
 
         return {
