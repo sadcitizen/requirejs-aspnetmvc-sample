@@ -60,13 +60,13 @@ define(function () {
              * */
             return {
                 initialize: initialize
-            }
+            };
         }
 
         return {
             app: app,
             controller: controller
-        }
+        };
 
     };
 
