@@ -254,8 +254,8 @@
     <Content Include="Scripts\assets\require\r.js" />
     <Content Include="Scripts\assets\require\require.min.js" />
     <Content Include="Scripts\assets\underscore\underscore.min.js" />
+    <Content Include="Scripts\build\app.min.js" />
     <Content Include="Scripts\public\app.js" />
-    <Content Include="Scripts\build.js" />
     <Content Include="Scripts\public\core\config.js" />
     <Content Include="Scripts\public\core\urls.js" />
     <Content Include="Scripts\public\packages.js" />
@@ -305,16 +305,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\build\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Page\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\build.bat" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Partials\ScriptsDebug.cshtml" />
