@@ -5,3 +5,4 @@ obj
 **/node_modules/
 **/.idea/*
 _ReSharper.mvcsample/*
+packages/
