@@ -5,23 +5,20 @@ define(function(require){
         app = function() {
 
             var controllers = {
-                home: function (action, params) {
-                    require('home_controller').initialize(action, params);
-                },
-
-                page: function (action, params) {
-                    require('page_controller').initialize(action, params);
-                }
+                'home': 'home_controller',
+                'page': 'page_controller'
             };
 
-            function start(route, params) {
 
+            function start(route, params) {
                 tools.log('Application starts!');
 
                 var parts = route.toLowerCase().split('/');
 
                 if (controllers[parts[0]]) {
-                    controllers[parts[0]](parts[1], params);
+                    require([controllers[parts[0]]], function(ctrl) {
+                        ctrl.initialize(parts[1], params);
+                    });
                 }
             }
 
