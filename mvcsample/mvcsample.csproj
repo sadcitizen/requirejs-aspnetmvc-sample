@@ -257,6 +257,7 @@
     <Content Include="Scripts\build\app.min.js" />
     <Content Include="Scripts\Gruntfile.js" />
     <Content Include="Scripts\public\app.js" />
+    <Content Include="Scripts\public\core\base.js" />
     <Content Include="Scripts\public\core\config.js" />
     <Content Include="Scripts\public\core\urls.js" />
     <Content Include="Scripts\public\packages.js" />
