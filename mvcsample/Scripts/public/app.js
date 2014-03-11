@@ -6,8 +6,8 @@ define(function(require){
 
     return new base.app({
         controllers: {
-            'home': 'home_controller',
-            'page': 'page_controller'
+            'home': require('home_controller'),
+            'page': require('page_controller')
         },
 
         beforeStart: function () {

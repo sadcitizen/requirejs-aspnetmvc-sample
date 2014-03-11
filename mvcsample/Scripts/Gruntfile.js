@@ -11,6 +11,7 @@ module.exports = function(grunt){
                     mainConfigFile: 'public/packages.js',
                     include: ['public/packages', 'assets/require/require.min.js'],
                     out: 'build/app.min.js',
+                    deps: ['app'],
                     optimize: 'uglify',
                     preserveLicenseComments: false,
                     generateSourceMaps: false

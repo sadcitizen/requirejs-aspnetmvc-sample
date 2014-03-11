@@ -21,9 +21,7 @@ define(function () {
                         _opts.beforeStart();
                     }
 
-                    require([_opts.controllers[parts[0]]], function(ctrl) {
-                        ctrl.initialize(parts[1], params);
-                    });
+                    _opts.controllers[parts[0]].initialize(parts[1], params);
 
                     if (_opts.afterStart) {
                         _opts.afterStart();
