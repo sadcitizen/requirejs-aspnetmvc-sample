@@ -55,10 +55,18 @@ define(function () {
             /**
              * Constructor
              * */
-            function initialize(action, options) {
+            function initialize(action, params) {
 
                 if (_opts.actions[action]) {
-                    _opts.actions[action](options);
+                    if (_opts.beforeStart) {
+                        _opts.beforeStart(action, params);
+                    }
+
+                    _opts.actions[action](params);
+
+                    if (_opts.afterStart) {
+                        _opts.afterStart(action, params);
+                    }
                 }
             }
 
