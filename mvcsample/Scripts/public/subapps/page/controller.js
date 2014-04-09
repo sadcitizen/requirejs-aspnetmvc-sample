@@ -3,7 +3,7 @@ define(function (require) {
 
     var base = require('base');
 
-    return new base.controller({
+    return new base.Controller({
         actions: {
             index: function (options) {
                 require('page_index').start(options);

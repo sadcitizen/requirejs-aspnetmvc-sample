@@ -1,20 +1,22 @@
 define(function (require){
-	'use strict';
+    'use strict';
 
-	var tools = require('tools');
+    var Action = function() {
+        var tools = require('tools');
 
-	function start() {
-	    tools.log('Home Contact starts!');
-	    
-	    tools.log(require('urls').forms().posts);
-	}
+        function start() {
+            tools.log('Home Contacts starts!');
+        }
 
-	function stop() {
-	    tools.log('Home Contact stops!');
-	}
+        function stop() {
+            tools.log('Home Contacts stops!');
+        }
 
-    return {
-        start: start,
-        stop: stop
+        return {
+            start: start,
+            stop: stop
+        };
     };
+
+    return new Action();
 });

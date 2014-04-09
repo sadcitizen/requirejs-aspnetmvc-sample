@@ -1,7 +1,7 @@
 define(function (require){
 	'use strict';
 
-    var index = function() {
+    var Action = function() {
         var tools = require('tools');
 
         function start() {
@@ -18,5 +18,5 @@ define(function (require){
         };
     };
 
-    return new index();
+    return new Action();
 });

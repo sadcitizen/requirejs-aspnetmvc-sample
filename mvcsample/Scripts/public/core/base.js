@@ -13,20 +13,29 @@ define(function () {
              * Starter
              * */
             function start(route, params) {
-                var parts = route.toLowerCase().split('/');
+                var parsedRoute = parseRoute(route);
 
-                if (_opts.controllers[parts[0]]) {
+                if (_opts.controllers[parsedRoute.controller]) {
 
                     if (_opts.beforeStart) {
-                        _opts.beforeStart();
+                        _opts.beforeStart(parsedRoute, params);
                     }
 
-                    _opts.controllers[parts[0]].initialize(parts[1], params);
+                    _opts.controllers[parsedRoute.controller].initialize(parsedRoute.action, params);
 
                     if (_opts.afterStart) {
-                        _opts.afterStart();
+                        _opts.afterStart(parsedRoute, params);
                     }
                 }
+            }
+
+            function parseRoute(route) {
+                var parts = route.toLowerCase().split('/');
+
+                return {
+                    controller: parts[0],
+                    action: parts[1]
+                };
             }
 
             /**
@@ -62,8 +71,8 @@ define(function () {
         }
 
         return {
-            app: app,
-            controller: controller
+            App: app,
+            Controller: controller
         };
 
     };

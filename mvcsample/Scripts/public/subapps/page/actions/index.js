@@ -1,7 +1,7 @@
 define(function (require) {
     'use strict';
 
-    var index = function () {
+    var Action = function () {
 
         var $ = require('jquery'),
             tools = require('tools'),
@@ -31,5 +31,5 @@ define(function (require) {
         };
     };
 
-    return new index();
+    return new Action();
 });

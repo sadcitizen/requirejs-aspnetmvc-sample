@@ -1,18 +1,22 @@
 define(function (require){
-	'use strict';
+    'use strict';
 
-	var tools = require('tools');
+    var Action = function() {
+        var tools = require('tools');
 
-	function start() {
-		tools.log('Home About starts!');
-	}
+        function start() {
+            tools.log('Home About starts!');
+        }
 
-	function stop() {
-	    tools.log('Home About stops!');
-	}
+        function stop() {
+            tools.log('Home About stops!');
+        }
 
-    return {
-        start: start,
-        stop: stop
+        return {
+            start: start,
+            stop: stop
+        };
     };
+
+    return new Action();
 });
