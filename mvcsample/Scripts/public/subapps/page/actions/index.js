@@ -1,14 +1,14 @@
 define(function (require) {
     'use strict';
 
-    var Action = function () {
+    var base = require('base'),
+        $ = require('jquery'),
+        tools = require('tools'),
+        $featured = $('.featured'),
+        scope = {};
 
-        var $ = require('jquery'),
-            tools = require('tools'),
-            $featured = $('.featured'),
-            scope = {};
-
-        function start(params) {
+    return new base.Action({
+        start: function (params) {
             tools.log('Page Index starts!');
 
             var $el = $('<' + params.el + '>', {
@@ -18,18 +18,13 @@ define(function (require) {
             $featured.append($el);
 
             scope.$el = $el;
-        }
 
-        function stop() {
+            setTimeout(this.stop, 3000);
+        },
+
+        stop: function () {
             tools.log('Page Index stops!');
             scope.$el.remove();
         }
-
-        return {
-            start: start,
-            stop: stop
-        };
-    };
-
-    return new Action();
+    });
 });

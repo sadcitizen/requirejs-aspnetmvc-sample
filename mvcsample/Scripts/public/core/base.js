@@ -1,89 +1,107 @@
 define(function () {
     'use strict';
 
-    var Base = function () {
+    var Base = {};
 
-        function app (_opts) {
+    Base.App = (function () {
 
-            if (_opts === undefined && _opts.controllers === undefined) {
+        function App (options) {
+
+            if (options === undefined) {
+                throw new Error('App options not found!');
+            }
+
+            if (options.controllers === undefined) {
                 throw new Error('Controllers not found!');
             }
 
-            /**
-             * Starter
-             * */
-            function start(route, params) {
-                var parsedRoute = parseRoute(route);
+            this._options = options;
+        }
 
-                if (_opts.controllers[parsedRoute.controller]) {
+        function parseRoute(route) {
+            var parts = route.toLowerCase().split('/');
 
-                    if (_opts.beforeStart) {
-                        _opts.beforeStart(parsedRoute, params);
-                    }
-
-                    _opts.controllers[parsedRoute.controller].initialize(parsedRoute.action, params);
-
-                    if (_opts.afterStart) {
-                        _opts.afterStart(parsedRoute, params);
-                    }
-                }
-            }
-
-            function parseRoute(route) {
-                var parts = route.toLowerCase().split('/');
-
-                return {
-                    controller: parts[0],
-                    action: parts[1]
-                };
-            }
-
-            /**
-             * API
-             * */
             return {
-                start: start
+                controller: parts[0],
+                action: parts[1]
             };
         }
 
-        function controller (_opts) {
+        App.prototype.start = function (route, params) {
+            var parsedRoute = parseRoute(route);
 
-            if (_opts === undefined && _opts.actions === undefined) {
+            if (this._options.controllers[parsedRoute.controller]) {
+
+                if (this._options.beforeStart) {
+                    this._options.beforeStart(parsedRoute, params);
+                }
+
+                this._options.controllers[parsedRoute.controller].initialize(parsedRoute.action, params);
+
+                if (this._options.afterStart) {
+                    this._options.afterStart(parsedRoute, params);
+                }
+            }
+        };
+
+        return App;
+    })();
+
+    Base.Controller = (function () {
+
+        function Controller (options) {
+            if (options === undefined) {
+                throw new Error('Controller options not found!');
+            }
+
+            if (options.actions === undefined) {
                 throw new Error('Actions not found!');
             }
 
-            /**
-             * Constructor
-             * */
-            function initialize(action, params) {
-
-                if (_opts.actions[action]) {
-                    if (_opts.beforeStart) {
-                        _opts.beforeStart(action, params);
-                    }
-
-                    _opts.actions[action](params);
-
-                    if (_opts.afterStart) {
-                        _opts.afterStart(action, params);
-                    }
-                }
-            }
-
-            /**
-             * API
-             * */
-            return {
-                initialize: initialize
-            };
+            this._options = options;
         }
 
-        return {
-            App: app,
-            Controller: controller
+        Controller.prototype.initialize = function (action, params) {
+            if (this._options.actions[action]) {
+                if (this._options.beforeStart) {
+                    this._options.beforeStart(action, params);
+                }
+
+                this._options.actions[action](params);
+
+                if (this._options.afterStart) {
+                    this._options.afterStart(action, params);
+                }
+            }
         };
 
-    };
+        return Controller;
+    })();
 
-    return new Base();
+    Base.Action = (function () {
+
+        function Action (options) {
+            if (options === undefined) {
+                throw new Error('Action options not found!');
+            }
+
+            if (options.start === undefined) {
+                throw new Error('Method Start not found!');
+            }
+
+            for (var prop in options) {
+                if (options.hasOwnProperty(prop)) {
+                    this[prop] = options[prop];
+                }
+            }
+        }
+
+        Action.prototype.start = function () {};
+
+        Action.prototype.stop = function () {};
+
+        return Action;
+    })();
+
+    return Base;
 });

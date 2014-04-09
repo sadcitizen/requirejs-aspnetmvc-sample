@@ -1,22 +1,12 @@
-define(function (require){
+define(function (require) {
     'use strict';
 
-    var Action = function() {
-        var tools = require('tools');
+    var base = require('base'),
+        tools = require('tools');
 
-        function start() {
+    return new base.Action({
+        start: function () {
             tools.log('Home About starts!');
         }
-
-        function stop() {
-            tools.log('Home About stops!');
-        }
-
-        return {
-            start: start,
-            stop: stop
-        };
-    };
-
-    return new Action();
+    });
 });
